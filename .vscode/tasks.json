@@ -1,0 +1,47 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "docker",
+            "type": "shell",
+            "command": "docker run -u $(id -u):$(id -g) -it --gpus all --rm -v ${workspaceFolder}:/tf tensorflow/tensorflow:latest-gpu bash",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "docker-jupyter",
+            "type": "shell",
+            "command": "docker run -u $(id -u):$(id -g) -it --gpus all --rm -v ${workspaceFolder}:/tf -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "docker-py-run",
+            "type": "shell",
+            "command": "docker run -u $(id -u):$(id -g) -it --gpus all --rm -v ${workspaceFolder}:/tf tensorflow/tensorflow:latest-gpu python3 /tf/main.py",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "docker-py-build",
+            "type": "shell",
+            "command": "docker build ${workspaceFolder} -t pso:test; docker run pso:test",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
