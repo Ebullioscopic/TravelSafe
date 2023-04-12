@@ -42,6 +42,26 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "build-run",
+            "type": "shell",
+            "command": "docker run pso:test",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build-dry-run",
+            "type": "shell",
+            "command": "docker run -u $(id -u):$(id -g) --rm -it -v build:/home/swuser/build pso:test /home/swuser/build/main.py",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
